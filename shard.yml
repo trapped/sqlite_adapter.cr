@@ -1,0 +1,13 @@
+name: sqlite_adapter
+version: 0.1.0
+
+authors:
+  - Giorgio Pellero <giorgio@pellero.it>
+
+license: MIT
+
+dependencies:
+  sqlite3:
+    github: manastech/crystal-sqlite3
+  active_record:
+    github: waterlink/active_record.cr
