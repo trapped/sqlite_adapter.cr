@@ -28,7 +28,7 @@ module SqliteAdapter
       while res.next
         @types[res.to_a[1] as String] = res.to_a[2] as String
       end
-      self.class.register(self)
+      self.class.register(self) if register
     end
 
     def create(fields)
@@ -119,7 +119,7 @@ module SqliteAdapter
         if types[name].downcase == "boolean"
           fields[name] = value != 0 unless value.nil?
         elsif types[name].downcase == "datetime"
-          fields[name] = Time.parse(value.to_s, "%Y-%m-%d %H:%M:%S", Time::Kind::Local)
+          fields[name] = Time.parse(value.to_s, "%Y-%m-%d %H:%M:%S", Time::Kind::Utc)
         elsif value.is_a?(ActiveRecord::SupportedType)
           fields[name] = value
         elsif value.nil?
@@ -147,7 +147,7 @@ module SqliteAdapter
       if value.is_a?(Int)
         value.to_i64
       elsif value.is_a?(Time)
-        value.to_s "%Y-%m-%d %H:%M:%S"
+        value.to_utc.to_s "%Y-%m-%d %H:%M:%S"
       elsif value.is_a?(Bool)
         value ? 1i64 : 0i64
       elsif value.is_a?(String)

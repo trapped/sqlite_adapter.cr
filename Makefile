@@ -5,7 +5,7 @@ CRYSTAL ?= crystal
 all: test
 
 test:
-	$(CRYSTAL) spec
 	script/setup-test-db.sh
+	$(CRYSTAL) spec
 	bin/test
 	rm -f data.db
