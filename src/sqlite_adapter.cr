@@ -52,7 +52,7 @@ module SqliteAdapter
 
     def get(id)
       query = "SELECT #{fields.join(", ")} FROM #{table_name} WHERE #{primary_field} = :__primary_key LIMIT 1"
-      result = @db.query(query, { "__primary_key" => (id as Int64).not_nil! })
+      result = @db.query(query, { "__primary_key" => id.to_i64.not_nil! })
       extract_rows(result)[0]?
     end
 
