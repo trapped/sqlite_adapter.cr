@@ -58,8 +58,7 @@ module SqliteAdapter
 
     def all
       query = "SELECT #{fields.join(", ")} FROM #{table_name}"
-      result = @db.query(query)
-      extract_rows(result)
+      extract_rows(@db.query(query))
     end
 
     def where(query_hash : Hash)
@@ -86,8 +85,7 @@ module SqliteAdapter
     private def _where(query, params)
       sqlite_query = "SELECT #{fields.join(", ")} FROM #{table_name} WHERE #{query}"
       sqlite_params = sqlitefy_params(params)
-      result = @db.query(sqlite_query, sqlite_params)
-      extract_rows(result)
+      extract_rows(@db.query(sqlite_query, sqlite_params))
     end
 
     def update(id, fields)
@@ -152,7 +150,7 @@ module SqliteAdapter
         value ? 1i64 : 0i64
       elsif value.is_a?(String)
         value
-      elsif value.is_a?(Int::Null|String::Null|Bool::Null)
+      elsif value.is_a?(Nil|Int::Null|String::Null|Bool::Null)
         nil
       else
         raise "Encountered unsupported type: #{value.class}, of type: #{typeof(value)}"
