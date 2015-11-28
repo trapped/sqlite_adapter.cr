@@ -1,0 +1,17 @@
+sudo: required
+dist: trusty
+
+language: crystal
+crystal:
+  - nightly
+
+notifications:
+  email: false
+
+addons:
+  apt:
+    packages:
+    - sqlite3
+
+script:
+  - make test
