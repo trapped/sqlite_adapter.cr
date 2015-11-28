@@ -1,4 +1,4 @@
-# sqlite_adapter.cr
+# sqlite_adapter.cr [![Build Status](https://travis-ci.org/trapped/sqlite_adapter.cr.svg?branch=master)](https://travis-ci.org/trapped/sqlite_adapter.cr)
 
 SQLite3 adapter for [active_record.cr](https://github.com/waterlink/active_record.cr). Uses [crystal-sqlite3](https://github.com/manastech/crystal-sqlite3) as driver.
 
