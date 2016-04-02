@@ -9,5 +9,7 @@ license: MIT
 dependencies:
   sqlite3:
     github: manastech/crystal-sqlite3
+    version: ~> 0.2
   active_record:
     github: waterlink/active_record.cr
+    version: ~> 0.4
