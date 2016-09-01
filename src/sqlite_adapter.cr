@@ -21,7 +21,7 @@ module SqliteAdapter
 
     getter table_name, primary_field, fields, types
 
-    def initialize(@table_name, @primary_field, @fields, register = true)
+    def initialize(@table_name : String, @primary_field : String, @fields : Array(String), register = true)
       @db = SQLite3::Database.new(ENV["SQLITE_DB"]? || "data.db")
       @types = Hash(String, String).new
       res = @db.query("PRAGMA table_info(#{@table_name})")
