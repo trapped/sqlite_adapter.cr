@@ -26,7 +26,7 @@ module SqliteAdapter
       @types = Hash(String, String).new
       res = @db.query("PRAGMA table_info(#{@table_name})")
       while res.next
-        @types[res.to_a[1] as String] = res.to_a[2] as String
+        @types[res.to_a[1].as(String)] = res.to_a[2].as(String)
       end
       self.class.register(self) if register
     end
